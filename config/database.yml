@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  username: dynamic_views_user
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: dynami_pages
+
+test:
+  <<: *default
+  database: dynami_pages_test
+
+production:
+  <<: *default
+  database: dynami_pages_pro
