@@ -1,2 +1,27 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<h1>Список товаров</h1>
+
+<div class="row">
+  <% @products.each do |product| %>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5><%= product.name %></h5>
+          <button class="btn btn-primary btn-details" data-id="<%= product.id %>">Details (AJAX)</button>
+          <button class="btn btn-secondary btn-fetch" data-id="<%= product.id %>">Details (Fetch)</button>
+          <%= link_to "Details (Turbo)", product_path(product), data: { turbo_frame: "product_info" }, class: "btn btn-success" %>
+          <button class="btn btn-warning btn-stimulus" data-id="<%= product.id %>">Details (Stimulus)</button>
+          <button class="btn btn-warning"
+                  data-controller="product"
+                  data-product-url-value="/products/<%= product.id %>.json"
+                  data-action="click->product#show">
+            Details (Stimulus)
+          </button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<h2>Product Info</h2>
+<div id="current_product_info"></div>
+<turbo-frame id="product_info"></turbo-frame>
