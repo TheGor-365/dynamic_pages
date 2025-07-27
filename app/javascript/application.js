@@ -4,3 +4,6 @@ import "./controllers"
 import * as bootstrap from "bootstrap"
 import "jquery"
 import "./products"
+import $ from "jquery";
+window.$ = $;
+window.jQuery = $;
