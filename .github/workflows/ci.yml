@@ -1,6 +1,16 @@
 name: CI
 on:
-  pull_request: { branches: [ main, master ] }
+  pull_request:
+    branches: [ main, master ]
+  push:
+    branches:
+      - main
+      - master
+      - 'codex/**'
+      - 'feature/**'
+      - 'fix/**'
+      - 'chore/**'
+  workflow_dispatch: {}
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -17,7 +27,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
-        with: { ruby-version: '3.3.0', bundler-cache: true }
+        with:
+          ruby-version: '3.3.0'
+          bundler-cache: true
       - run: bin/rails db:prepare && bin/rails db:migrate
       - run: bundle exec rubocop
       - run: bundle exec brakeman -q -w2
