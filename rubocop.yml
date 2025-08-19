@@ -1,3 +1,9 @@
-Layout/EmptyLinesAroundBlockBody:
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.3
   Exclude:
+    - 'bin/*'
     - 'db/schema.rb'
+
+Style/Documentation:
+  Enabled: false
