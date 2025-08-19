@@ -19,11 +19,11 @@ gem "bootsnap", require: false
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
+  gem "rubocop", require: false
 end
 
 group :development do
   gem "web-console"
-  gem "rubocop"
   # gem "rack-mini-profiler"
   # gem "spring"
 end
