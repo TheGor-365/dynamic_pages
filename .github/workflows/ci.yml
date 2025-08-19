@@ -32,6 +32,10 @@ jobs:
           bundler-cache: true
       - run: bin/rails db:prepare && bin/rails db:migrate
       - run: bundle exec rubocop
+          Layout/EmptyLinesAroundBlockBody
+            Exclude
+              - 'db/schema.rb'
+
       - run: bundle exec brakeman -q -w2
       - run: bundle exec bundle audit check --update
       - run: bundle exec rspec --format progress
